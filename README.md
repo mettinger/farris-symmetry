@@ -1,5 +1,5 @@
 # farris-symmetry
-This repo contains code for generating images with the 17 types of wallpaper symmetries utilizing the techniques described in the book "Creating Symmetry - The Artful Mathematics of Wallpaper Patterns" by Frank A. Farris.
+This repo contains code for generating images with the 17 types of wallpaper symmetries utilizing the techniques described in the book "Creating Symmetry - The Artful Mathematics of Wallpaper Patterns" by Frank A. Farris.  To date, only wallpaper code has been implemented (i.e. no friezes, no color-reversing, etc.)
 
 
 
