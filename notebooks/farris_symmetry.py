@@ -135,31 +135,6 @@ def latticeEval(thisTuple):
     
     return ((i,j), myF(nmDict)((z.real, z.imag)))
 
-
-def fundamentalCellDisplay(fundamentalDict, resx, resy):
-
-    extremePoints = [0., lattice_vector_1, lattice_vector_2, lattice_vector_1 + lattice_vector_2]
-    minx = min([i.real for i in extremePoints])
-    maxx = max([i.real for i in extremePoints])
-    miny = min([i.imag for i in extremePoints])
-    maxy = max([i.imag for i in extremePoints])
-    
-    gap = max([maxy - miny, maxx - minx])
-    maxx = minx + gap
-    maxy = miny + gap
-    
-    imOut = np.zeros((resy, resx, 3), dtype='uint8')
-    for key,value in fundamentalDict.items():
-        z = ((lattice_vector_1 * key[0]) + (lattice_vector_2 * key[1])) / numStep
-        x = z.real
-        y = z.imag
-        
-        i = int(((x - minx)/(maxx-minx)) * (resx-1))
-        j = int(((y - miny)/(maxy-miny)) * (resy-1))
-        imOut[resy - j - 1,i,:] = value
-     
-    display(Image.fromarray(imOut))
-
     
 def colorWheelGet(imageList, index='random'):
     
@@ -270,6 +245,8 @@ def f_hex(nmDict):
 
 def functionAndLatticeGet(flag, latticeData):
     
+    global lattice_vector_1, lattice_vector_2
+    
     if flag == 'general':
         myF = f_general
 
@@ -306,6 +283,9 @@ def functionAndLatticeGet(flag, latticeData):
         # lattice vectors are fixed
         lattice_vector_1 = 1.
         lattice_vector_2 = (-1 + (1j * np.sqrt(3)))/2.
+        
+    else:
+        print "lattice type error: " + flag
 
 
     return (myF, lattice_vector_1, lattice_vector_2)
@@ -487,6 +467,42 @@ def constantDist(scale):
 
 def uniformDist(low,high):
     return lambda : np.random.randint(low,high)
+
+
+# In[ ]:
+
+def checkSymmetrySimple(gridApply):
+    
+    fundamentalDict = {}
+    for key,value in gridApply.items():
+         fundamentalDict[key] = np.array(((value.real * 1024) % 256 ,0, (value.imag * 1024) % 256), dtype='uint8')
+        
+    return fundamentalDict
+
+
+def checkSymmetrySimpleReal(gridApply):
+    
+    fundamentalDict = {}
+    allValues = [i.real for i in gridApply.values()]
+    minx = min(allValues)
+    maxx = max(allValues)
+    span = maxx - minx
+    for key,value in gridApply.items():
+         fundamentalDict[key] = np.array((int(((value.real - minx)/span) * 255),0,0), dtype = 'uint8')
+        
+    return fundamentalDict
+
+def checkSymmetrySimpleImag(gridApply):
+    
+    fundamentalDict = {}
+    allValues = [i.imag for i in gridApply.values()]
+    miny = min(allValues)
+    maxy = max(allValues)
+    span = maxy - miny
+    for key,value in gridApply.items():
+         fundamentalDict[key] = np.array((0,0,int(((value.imag - miny)/span) * 255)), dtype = 'uint8')
+        
+    return fundamentalDict
 
 
 # In[ ]:

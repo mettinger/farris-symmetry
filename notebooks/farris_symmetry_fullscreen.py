@@ -1,12 +1,8 @@
 
-# coding: utf-8
-
-# In[ ]:
+# run this as python script and NOT as notebook!!!!
 
 from farris_symmetry import *
 
-
-# In[ ]:
 
 while True:
     imageIndex = 'random'
@@ -60,10 +56,6 @@ while True:
     nmDict = nmDictRandom(groupType, numSampleCoeff, coefficientFunction, nmMagnitudeFunction)
     print "nmDict: "
     print nmDict
-    
-    # compute matrix "d" used for tiling a region by the fundamental cell
-    #c = np.array([[lattice_vector_1.real, lattice_vector_2.real],[lattice_vector_1.imag,lattice_vector_2.imag]])
-    #d = np.linalg.inv(c)
 
     v = np.linspace(0,1,numStep)
 
@@ -99,7 +91,6 @@ while True:
                             resx=resx, 
                             resy=resy)
     
-    #imOut = cv2.resize(imOut, (1500,1000), interpolation=cv2.INTER_CUBIC)
     print "finished..."
     print 
     print
@@ -110,7 +101,6 @@ while True:
     
 
 
-# In[ ]:
 
 
 
