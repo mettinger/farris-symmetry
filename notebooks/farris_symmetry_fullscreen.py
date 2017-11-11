@@ -62,8 +62,8 @@ while True:
     print nmDict
     
     # compute matrix "d" used for tiling a region by the fundamental cell
-    c = np.array([[lattice_vector_1.real, lattice_vector_2.real],[lattice_vector_1.imag,lattice_vector_2.imag]])
-    d = np.linalg.inv(c)
+    #c = np.array([[lattice_vector_1.real, lattice_vector_2.real],[lattice_vector_1.imag,lattice_vector_2.imag]])
+    #d = np.linalg.inv(c)
 
     v = np.linspace(0,1,numStep)
 
@@ -90,6 +90,8 @@ while True:
     print "x range, y range: " + str((xmin,xmax,ymin,ymax))
     imOut = tileFundamental(fundamentalColorDict, 
                             numStep, 
+                            lattice_vector_1,
+                            lattice_vector_2,
                             xmin=xmin, 
                             xmax=xmax, 
                             ymin=ymin, 
