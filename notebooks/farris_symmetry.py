@@ -24,7 +24,7 @@ imageList = os.listdir('../images/')
 
 # ## Define the graphics and plotting functions
 
-# In[4]:
+# In[1]:
 
 # GRAPHICS FUNCTIONS
 
@@ -53,6 +53,16 @@ def colorwheelApply(gridApply, imArray):
     return fundamentalDict
 
 
+def symmetryByFunction(gridApply, zToColorFunction):
+    fundamentalDict = {}
+    for key,value in gridApply.items():
+         fundamentalDict[key] = zToColorFunction(value)
+    return fundamentalDict
+
+def simpleSymmetryFunction(z):
+    return np.array(((z.real * 1024) % 256 ,0, (z.imag * 1024) % 256), dtype='uint8')
+    
+    
 def checkSymmetrySimple(gridApply):
     
     fundamentalDict = {}
@@ -397,7 +407,7 @@ def nmDictRandom(groupType, numSampleCoeff, coefficientFunction, nmMagnitudeFunc
             a = randomComplex(coefficientFunction)
             nmDict[nmPair] = a
             n,m = nmPair
-            nmDict[(n,-m)] = a
+            nmDict[(-n,m)] = a
             
     elif groupType in ['pg']:
         for i in range(numSampleCoeff):
@@ -405,7 +415,7 @@ def nmDictRandom(groupType, numSampleCoeff, coefficientFunction, nmMagnitudeFunc
             a = randomComplex(coefficientFunction)
             nmDict[nmPair] = a
             n,m = nmPair
-            nmDict[(n,-m)] = ((-1)**n) * a
+            nmDict[(-n,m)] = ((-1)**m) * a
             
     elif groupType in ['pmm']:
         for i in range(numSampleCoeff):
