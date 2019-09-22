@@ -149,10 +149,14 @@ def latticeEval(thisTuple):
     return ((i,j), myF(nmDict)((z.real, z.imag)))
 
     
-def colorWheelGet(imageList, index='random'):
+def colorWheelGet(imageList, index='randomImage'):
     
-    if index=='random':
+    if index=='randomImage':
         imageName = np.random.choice(imageList)
+    elif index=='random':
+        colorWheel = np.random.randint(0,256, size=(1000,1000,3), dtype=np.uint8)
+        imageName = 'NA'
+        return colorWheel, imageName
     elif type(index) == str:
         imageName = index
     else:
