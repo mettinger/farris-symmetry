@@ -1,7 +1,8 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[2]:
+
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -19,12 +20,14 @@ import cv2
 
 # In[3]:
 
+
 imageList = os.listdir('../images/')
 
 
 # ## Define the graphics and plotting functions
 
 # In[1]:
+
 
 # GRAPHICS FUNCTIONS
 
@@ -62,7 +65,7 @@ def symmetryByFunction(gridApply, zToColorFunction):
 def simpleSymmetryFunction(z):
     return np.array(((z.real * 1024) % 256 ,0, (z.imag * 1024) % 256), dtype='uint8')
     
-    
+'''
 def checkSymmetrySimple(gridApply):
     
     fundamentalDict = {}
@@ -70,7 +73,7 @@ def checkSymmetrySimple(gridApply):
          fundamentalDict[key] = np.array(((value.real * 1024) % 256 ,0, (value.imag * 1024) % 256), dtype='uint8')
         
     return fundamentalDict
-
+'''
 
 def checkSymmetrySimpleReal(gridApply):
     
@@ -164,6 +167,7 @@ def colorWheelGet(imageList, index='random'):
 
 # In[5]:
 
+
 # SYMMETRY FUNCTIONS
 
 # GENERAL LATTICE
@@ -253,6 +257,7 @@ def f_hex(nmDict):
 
 # In[6]:
 
+
 def functionAndLatticeGet(flag, latticeData):
     
     global lattice_vector_1, lattice_vector_2
@@ -295,7 +300,7 @@ def functionAndLatticeGet(flag, latticeData):
         lattice_vector_2 = (-1 + (1j * np.sqrt(3)))/2.
         
     else:
-        print "lattice type error: " + flag
+        print("lattice type error: " + flag)
 
 
     return (myF, lattice_vector_1, lattice_vector_2)
@@ -313,7 +318,7 @@ def latticeTypeFromGroup(group):
     elif group in ['p3','p31m','p3m1','p6','p6m']:
         latticeType = 'hexagonal'
     else:
-        print "Invalid group..."
+        print("Invalid group...")
         return Non
     
     return latticeType
@@ -326,6 +331,7 @@ def randomGroupGet():
 # ## Functions for random wallpaper functions
 
 # In[7]:
+
 
 # RETURN A RANDOM INTEGER PAIR WITH GIVEN l_infinity NORM
 def uniform_nm_fixed_magnitude(magnitude):
@@ -458,10 +464,10 @@ def nmDictRandom(groupType, numSampleCoeff, coefficientFunction, nmMagnitudeFunc
     return nmDict
 
 
-
 # ## Functions defining random distributions for n,m pairs and complex coefficients
 
 # In[5]:
+
 
 # n,m MAGNITUDE FUNCTIONS FOR nmPairRandom
 def geometricDist(p):
@@ -480,6 +486,7 @@ def uniformDist(low,high):
 
 
 # In[ ]:
+
 
 def checkSymmetrySimple(gridApply):
     
@@ -516,6 +523,7 @@ def checkSymmetrySimpleImag(gridApply):
 
 
 # In[ ]:
+
 
 
 
