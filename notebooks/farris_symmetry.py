@@ -323,7 +323,7 @@ def latticeTypeFromGroup(group):
         latticeType = 'hexagonal'
     else:
         print("Invalid group...")
-        return Non
+        return None
     
     return latticeType
 
@@ -391,7 +391,7 @@ def nmDictRandom(groupType, numSampleCoeff, coefficientFunction, nmMagnitudeFunc
             a = randomComplex(coefficientFunction)
             nmDict[nmPair] = a
             n,m = nmPair
-            nmDict[(-n,-m)] = a
+            nmDict[(m,n)] = a
             
     elif groupType in ['cmm','p6m']:
         for i in range(numSampleCoeff):
